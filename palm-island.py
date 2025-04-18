@@ -7,16 +7,20 @@ generate all the possible games and its points.
 
 
 ACT_LVL_UP = 'ACT_LVL_UP'
+ACT_TO_LVL0 = 'ACT_TO_LVL0'
 ACT_TO_LVL1 = 'ACT_TO_LVL1'
 ACT_TO_LVL2 = 'ACT_TO_LVL2'
-ACT_TO_LVL2 = 'ACT_TO_LVL3'
-ACT_TO_LVL2 = 'ACT_TO_LVL4'
+ACT_TO_LVL3 = 'ACT_TO_LVL3'
+ACT_TO_LVL4 = 'ACT_TO_LVL4'
+ACT_TO_LVL5 = 'ACT_TO_LVL5'
+ACT_TO_LVL6 = 'ACT_TO_LVL6'
+ACT_TO_LVL7 = 'ACT_TO_LVL7'
 ACT_TO_HAND = 'ACT_TO_HAND'
 
 
 class Resource():
 
-    def __init__(self, wood, fish, stone):
+    def __init__(self, wood = 0, fish = 0, stone = 0):
         self.wood = wood
         self.fish = fish
         self.stone = stone
@@ -40,8 +44,8 @@ class Card():
 
 class CardLevel():
 
-    def __init__(self, value, actions, vp):
-        self.value = value
+    def __init__(self, resources, actions, vp):
+        self.resources = resources
         self.actions = actions
         self.vp = vp
 
@@ -49,13 +53,57 @@ class CardLevel():
 class Player():
 
     def __init__(self, deck):
-        self.deck = deck
+        self.deck = PalmIslandDeck(deck)
 
 
 
-class PalmIsland():
+class CardPosition():
 
-    def __init__(self):
-        self.deck = {}
+    def __init__(self, card, nxt = None, last = False):
+        self.card = card
+        self.nxt = nxt
+        self.last = last
 
 
+class PalmIslandDeck():
+
+    def __init__(self, deckList):
+        last = CardPosition(deckList[-1], last = True)
+        before = last
+        for c in deckList[-2,0]:
+            actual = CardPosition(c, before)
+            before = actual
+        last.nxt = before
+        # Last loop iteration let first item on the before pointer
+        self.first = before
+
+    
+    def first(self):
+        return self.first.card
+
+
+    def second():
+        return self.first.nxt.card
+
+
+def constructDeckList():
+    return [
+        Card(1, "Canoaria", [
+            CardLevel(Resource(fish = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(fish = 1), ACT_TO_LVL1), Action(fish = 1, ACT_TO_LVL2)]),
+            CardLevel(Resource(fish = 2), [Action(Resource(), ACT_TO_HAND), Action(Resource(fish = 1, wood = 1), ACT_TO_LVL3)]),
+            CardLevel(Resource(wood = 1, fish = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 1, fish = 1), ACT_TO_LVL3)])
+        ]),
+        Card(2, "Canoaria", [
+            CardLevel(Resource(fish = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(fish = 1), ACT_TO_LVL1), Action(fish = 1, ACT_TO_LVL2)]),
+            CardLevel(Resource(fish = 2), [Action(Resource(), ACT_TO_HAND), Action(Resource(fish = 1, wood = 1), ACT_TO_LVL3)]),
+            CardLevel(Resource(wood = 1, fish = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 1, fish = 1), ACT_TO_LVL3)])
+        ]),
+        Card(3, "Canoaria", [
+            CardLevel(Resource(fish = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(fish = 1), ACT_TO_LVL1), Action(fish = 1, ACT_TO_LVL2)]),
+            CardLevel(Resource(fish = 2), [Action(Resource(), ACT_TO_HAND), Action(Resource(fish = 1, wood = 1), ACT_TO_LVL3)]),
+            CardLevel(Resource(wood = 1, fish = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 1, fish = 1), ACT_TO_LVL3)])
+        ]),
+    ]
+
+
+if __name__ == '__main__':

@@ -123,8 +123,28 @@ def constructDeckList():
             CardLevel(1, Resource(wood = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 1, fish = 1), ACT_TO_LVL2)]),
             CardLevel(2, Resource(wood = 2), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 2, stone = 2), ACT_TO_LVL3)]),
             CardLevel(5, Resource(), [])
+        ]),
+        Card(7, "Pedreira", [
+            CardLevel(0, Resource(), [Action(Resource(wood = 2), ACT_TO_LVL1), Action(Resource(fish = 2), ACT_TO_LVL2)]),
+            CardLevel(0, Resource(stone = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 2, fish = 1), ACT_TO_LVL3)]),
+            CardLevel(0, Resource(stone = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 1, fish = 2), ACT_TO_LVL3)]),
+            CardLevel(2, Resource(stone = 2), [Action(Resource(), ACT_TO_HAND)])
+        ]),
+        Card(8, "Pedreira", [
+            CardLevel(0, Resource(), [Action(Resource(wood = 2), ACT_TO_LVL1), Action(Resource(fish = 2), ACT_TO_LVL2)]),
+            CardLevel(0, Resource(stone = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 2, fish = 1), ACT_TO_LVL3)]),
+            CardLevel(0, Resource(stone = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 1, fish = 2), ACT_TO_LVL3)]),
+            CardLevel(2, Resource(stone = 2), [Action(Resource(), ACT_TO_HAND)])
+        ]),
+        Card(9, "Pedreira", [
+            CardLevel(0, Resource(), [Action(Resource(wood = 2), ACT_TO_LVL1), Action(Resource(fish = 2), ACT_TO_LVL2)]),
+            CardLevel(0, Resource(stone = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 2, fish = 1), ACT_TO_LVL3)]),
+            CardLevel(0, Resource(stone = 1), [Action(Resource(), ACT_TO_HAND), Action(Resource(wood = 1, fish = 2), ACT_TO_LVL3)]),
+            CardLevel(2, Resource(stone = 2), [Action(Resource(), ACT_TO_HAND)])
         ])
     ]
 
 
 if __name__ == '__main__':
+    deckList = constructDeckList();
+
